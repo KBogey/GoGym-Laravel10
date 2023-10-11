@@ -85,19 +85,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav w-100 justify-content-around">
             <li class="nav-item">
-                <a @class(['nav-link', 'active' => str_contains($route, 'news.')]) href="/">News</a>
+                <a @class(['nav-link', 'active' => str_contains($route, 'news.')]) href="{{ route('public.posts.index') }}">News</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">News</a>
+                <a href="/" class="nav-link">Nutrition</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">News</a>
+                <a href="/" class="nav-link">Trouver une salle</a>
             </li>
         </ul>
     </div>
 </nav>
     @yield('intro')
-<div class="container my-5">
+<div class="container m-5 px-5">
     @yield('content')
 </div>
 

@@ -10,9 +10,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->limit(4);
+        $postsNews = Post::where('category_id', '=', 1)->orderBy('created_at', 'desc')->limit(4)->get();
+        $postsNutri = Post::where('category_id', '=', 2)->orderBy('created_at', 'desc')->limit(4)->get();
         return view('admin.admin', [
-            'posts' => $posts
+            'postsNews' => $postsNews,
+            'postsNutri' => $postsNutri
         ]);
     }
 }

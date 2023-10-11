@@ -10,12 +10,24 @@
 @endsection
 
 @section('content')
-    <h2 class="text-dark">Les dernières actus</h2>
-    <div class="row">
-        @foreach($posts as $post)
+    <div class="row mt-5">
+    <h2 class="text-dark">Les dernières news</h2>
+    <div class="row p-5">
+        @foreach($postsNews as $post)
             <div class="col">
                 @include('public.posts.card')
             </div>
         @endforeach
+    </div>
+    </div>
+    <div class="row mt-5">
+    <h2 class="text-dark">Les derniers conseils nutrition</h2>
+    <div class="row p-5">
+        @foreach($postsNutri as $post)
+            <div class="col">
+                @include('public.posts.card')
+            </div>
+        @endforeach
+    </div>
     </div>
 @endsection

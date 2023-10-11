@@ -13,9 +13,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+        $postsNews = Post::orderBy('created_at', 'desc')->where('category_id', '=', 1)->limit(4)->get();
+        $postsNutri = Post::orderBy('created_at', 'desc')->where('category_id', '=', 2)->limit(4)->get();
         return view('public.home', [
-            'posts' => $posts
+            'postsNews' => $postsNews,
+            'postsNutri' => $postsNutri
         ]);
     }
 
@@ -23,10 +25,10 @@ class HomeController extends Controller
     {
         return view('emails.contact');
     }
-     public function email(ContactFormRequest $request)
-     {
+
+    public function email(ContactFormRequest $request)
+    {
          Mail::send( new ContactMail( $request->validated()));
          return back()->with('success', 'Votre email a été envoyé avec succès');
-     }
-
+    }
 }
