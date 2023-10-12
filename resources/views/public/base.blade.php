@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>@yield('title') | Go Gym !</title>
@@ -20,7 +21,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
                         <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5z"/>
                     </svg>
-                    +337 11 22 33 44
+                    <strong>+337 11 22 33 44</strong>
                 </a>
             </li>
             <li class="nav-item px-2">
@@ -28,7 +29,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-open-heart" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.817l3.235 1.94a2.76 2.76 0 0 0-.233 1.027L1 7.384v5.733l3.479-2.087c.15.275.335.553.558.83l-4.002 2.402A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738l-4.002-2.401c.223-.278.408-.556.558-.831L15 13.117V7.383l-3.002 1.801a2.76 2.76 0 0 0-.233-1.026L15 6.217V5.4a1 1 0 0 0-.53-.882l-6-3.2ZM7.06.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
                     </svg>
-                    admin@gogym.fr
+                    <strong>admin@gogym.fr</strong>
                 </a>
             </li>
             <ul class="navbar-nav">
@@ -85,21 +86,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav w-100 justify-content-around">
             <li class="nav-item">
-                <a @class(['nav-link', 'active' => str_contains($route, 'news.')]) href="{{ route('public.posts.index') }}">News</a>
+                <a @class(['nav-link', 'active' => str_contains($route, 'news.')]) href="{{ route('public.posts.news.index') }}">News</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">Nutrition</a>
+                <a @class(["nav-link", 'active' => str_contains($route, 'nutri.')]) href="{{ route('public.posts.nutri.index') }}"> Nutrition</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">Trouver une salle</a>
+                <a @class(["nav-link", 'active' => str_contains($route, 'nutri.')]) href="/">Trouver une salle</a>
+            </li>
+            <li class="nav-item">
+                <form action="{{route('public.posts.search')}}" method="get" class="d-flex" role="search">
+                    <input type="search" placeholder="Rechercher" class="form-control mb-2" name="search" value="{{ $input['search'] ?? ''}}">
+                    <button class="btn btn-primary btn-sm flex-grow-0">
+                        Rechercher
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
 </nav>
     @yield('intro')
-<div class="container m-5 px-5">
+<div class="container my-4 pb-5">
     @yield('content')
 </div>
-
+<div id="footer">
+    <div class="container-fluid" style="background-color: #f67337;">
+        <div class="py-2"></div>
+    </div>
+    <div class="container-fluid bg-dark">
+        <div class="py-4">....</div>
+    </div>
+</div>
 </body>
 </html>

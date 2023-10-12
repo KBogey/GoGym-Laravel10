@@ -22,11 +22,13 @@ Route::name('public.')->group( function () use ($idRegex, $slugRegex){
     Route::get('/', [App\Http\Controllers\Public\HomeController::class, 'home'])->name('home');
     Route::get('/contact', [App\Http\Controllers\Public\HomeController::class, 'contact'])->name('contact');
     Route::post('/contact/emails', [App\Http\Controllers\Public\HomeController::class, 'email'])->name('contact.emails');
-    Route::get('/post/index', [\App\Http\Controllers\Public\PostController::class, 'index'])->name('posts.index');
+    Route::get('/index/news', [\App\Http\Controllers\Public\PostController::class, 'indexnews'])->name('posts.news.index');
+    Route::get('/index/nutrition', [App\Http\Controllers\Public\PostController::class, 'indexnutri'])->name('posts.nutri.index');
     Route::get('/post/{slug}-{post}', [App\Http\Controllers\Public\PostController::class, 'show'])->name('post.show')->where([
         'slug' => $slugRegex,
         'post' => $idRegex
     ]);
+    Route::get('/posts/search', [App\Http\Controllers\Public\PostController::class, 'index'])->name('posts.search');
 });
 
 //Login/out

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Psy\Util\Str;
 
+/**
+ * @mixin IdeHelperPost
+ */
 class Post extends Model
 {
     use HasFactory;

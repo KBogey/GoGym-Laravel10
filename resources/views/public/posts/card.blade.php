@@ -1,6 +1,6 @@
 <div class="card my-2 h-100">
 
-    <img src="/img/goGymLogoOr.png" alt="" class="w-100" style="height: 70px; object-fit: cover;">
+    <img src="{{ asset('img/goGymLogoOr.png') }}" alt="" class="w-100" style="height: 70px; object-fit: cover;">
 
     <div class="card-body">
         <h5 class="card-title">
