@@ -43,22 +43,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function search(Request $request){
-        // Get the search value from the request
-        $search = $request->input('search');
-
-        // Search in the title and content columns from the posts table
-        $posts = Post::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('content', 'LIKE', "%{$search}%");
-
-        // Return the search view with the resluts compacted
-        dd($posts);
-        return view('public.posts.index', [
-            'posts' => $posts->paginate(12)
-        ]);
-    }
-
     public function show(string $slug, Post $post)
     {
         $expectedSlug = $post->getSlug();
